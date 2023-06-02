@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Calaculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <div class="container">
+        <div class="calculator">
+            <input type="text" class="output" placeholder="0">
+            <button onclick="cl(this)">clr</button>
+            <button onclick="dlt(this)" class="delete">del</button>
+            <button onclick="clicking(this)" class="%">%</button>
+            <button onclick="clicking(this)" class="/">/</button>
+            <button onclick="clicking(this)" class="7">7</button>
+            <button onclick="clicking(this)" class="8">8</button>
+            <button onclick="clicking(this)" class="9">9</button>
+            <button onclick="clicking(this)" class="*">*</button>
+            <button onclick="clicking(this)" class="4">4</button>
+            <button onclick="clicking(this)" class="5">5</button>
+            <button onclick="clicking(this)" class="6">6</button>
+            <button onclick="clicking(this)" class="-">-</button>
+            <button onclick="clicking(this)" class="1">1</button>
+            <button onclick="clicking(this)" class="2">2</button>
+            <button onclick="clicking(this)" class="3">3</button>
+            <button onclick="clicking(this)" class="+">+</button>
+            <button onclick="clicking(this)" class="00">00</button>
+            <button onclick="clicking(this)" class="0">0</button>
+            <button onclick="clicking(this)" class=".">.</button>
+            <button onclick="ev(this)" class="=">=</button>
+           </div>
+     </div>
+     <script>
+        function clicking(event){
+            parent = document.querySelector('.output');
+            operator = ['+','-','*','/','%','.'];
+            if(!(operator.includes(parent.value.slice(-1)) && operator.includes(event.innerText))){
+                parent.value = parent.value + event.innerText;
+                // console.log(parent.value);
+            }
+        } 
+        window.addEventListener('keypress',(e)=>{
+            equal = '='
+            operator = ['+','-','*','/','%']
+            key = e.key
+            code = e.code
+            if(code.includes('Digit') || operator.includes(key)){
+                parent = document.querySelector('.output');
+                parent.value = parent.value + key;
+            }
+            else{
+                alert('invalid') 
+            }
+        })
+        const ev = ()=>{
+           parent = document.querySelector('.output');
+           result = document.querySelector('.output');
+           data = parent.value;
+           var res = eval(data);
+           result.value = res;
+        }
+        function cl(event){
+            parent = document.querySelector('.output');
+            parent.value = '';
+        }
+        function dlt(event){
+           parent = document.querySelector('.output');
+           val = parent.value;
+           del = val.slice(0,-1);
+           parent.value = del;
+        }
+    </script>
+</body>
+</html>
